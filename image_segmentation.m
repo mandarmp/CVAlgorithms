@@ -1,3 +1,12 @@
+%$ Image segmentation Experimentation
+%   Other m-files required: none %   MAT-files required: none % 
+%   Image segmentation toolbox needed.
+%   Author: Mandar Patil
+%   email: mxp172@student.bham.ac.uk
+%   Date: 12/03/2022; 
+% 
+%   Last revision: 14/03/2022, Mandar Patil, Object colour count.
+
 clc
 clear all
 close all
@@ -8,38 +17,6 @@ x_org=imread('Images/image.png');
 subplot(2,3,1)
 imshow(x_org);
 title('Original Image');
-%%
-% [BW,maskedRGBImage] = createMask(x);
-% figure;
-% imshow(BW);
-% title('Binary Image of Red color objects');
-% figure;
-% imshow(maskedRGBImage);
-% title('Color Image of Red color objects');
-% [f g]=size(BW);
-% process=zeros(f,g);
-% xa=imfill(BW,'holes');
-% figure;
-% imshow(xa);
-% title('Binary mask of red color objects after hole filling');
-% figure;
-% [L ,num]=bwlabel(xa);
-% stats1=regionprops(xa,'Area','Perimeter');
-% for R=1:num
-%         circularity =(4 * pi * stats1(R).Area)/(stats1(R).Perimeter^ 2) ;
-%         if (circularity>=0.94)
-%             process=process+(L==R);
-%         end
-% end
-% imshow(process);
-% title('Mask for red color circles');
-% processa=uint8(cat(3,process,process,process));
-% figure;
-% imshow(x.*processa);
-% title('Red color Circles');
-
-
-%%
 
 xblur1 = imgaussfilt(x_org,2);
 subplot(2,3,2)
