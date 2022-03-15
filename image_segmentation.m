@@ -13,7 +13,7 @@ close all
 warning off
 
 dbstop if error
-x_org=imread('Images/image.png');
+x_org=imread('Images/image2.png');
 subplot(2,3,1)
 imshow(x_org);
 title('Original Image');
@@ -32,19 +32,23 @@ imshow(xBW)
 subplot(2,3,5)
 imshow(x_org); hold on;
 colors=['b' 'g' 'r' 'c' 'm' 'y'];
+
+%%
 %ref: https://uk.mathworks.com/help/images/ref/bwboundaries.html 
 for k=1:length(B),
   boundary = B{k};
   cidx = mod(k,length(colors))+1;
   plot(boundary(:,2), boundary(:,1),...
        colors(cidx),'LineWidth',2);
-
   %randomize text position for better visibility
   rndRow = ceil(length(boundary)/(mod(rand*k,7)+1));
   col = boundary(rndRow,2); row = boundary(rndRow,1);
   h = text(col+1, row-1, num2str(L(row,col)));
   set(h,'Color',colors(cidx),'FontSize',14,'FontWeight','bold');
 end
+
+
+%%
 g = regionprops(xBW,xGray, 'Area','BoundingBox','WeightedCentroid','PixelValues');
 
 M = containers.Map();
@@ -73,12 +77,10 @@ for iter_variable = 1: N
 
 end
 
-
-
 if(red>green)
     countstr = "green is the odd colour"
 else
-    countstr = "red is odd colour"
+    countstr = "red is the odd colour"
 end
 ax = subplot(2,3, 6);
 text(0.2,0.2,countstr);
